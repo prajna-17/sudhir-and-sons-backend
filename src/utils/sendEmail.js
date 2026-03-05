@@ -4,9 +4,9 @@ const resend = new Resend(process.env.RESEND_API_KEY);
 
 const sendOtpEmail = async (email, otp) => {
   await resend.emails.send({
-    from: `Montoaklyn <${process.env.EMAIL_FROM}>`,
+    from: `SNS <${process.env.EMAIL_FROM}>`,
     to: email,
-    subject: "Your Montoaklyn OTP",
+    subject: "Your SNS OTP",
     html: `
       <div style="font-family: Arial, sans-serif;">
         <h2>Your OTP</h2>

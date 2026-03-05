@@ -17,7 +17,7 @@ const createSuperCategory = async (req, res) => {
 
 const getSuperCategories = async (req, res) => {
   const data = await SuperCategory.find();
-  res.json(data);
+  res.json({ data }); // wrap in object
 };
 
 module.exports = { createSuperCategory, getSuperCategories };

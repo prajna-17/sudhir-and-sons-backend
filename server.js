@@ -38,6 +38,7 @@ app.use(
 // 🔥 Explicitly handle preflight requests
 
 app.use(express.json());
+const PORT = process.env.PORT || 5000;
 
 // connect db
 connectDB().then(() => {
@@ -69,4 +70,3 @@ app.use("/api/sub-categories", subCategoryRoutes);
 app.use("/api/razorpay", razorpayRoutes);
 
 // start server
-const PORT = process.env.PORT || 5000;

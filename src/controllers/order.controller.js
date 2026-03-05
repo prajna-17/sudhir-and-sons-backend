@@ -170,7 +170,9 @@ const fetchAllOrders = async (req, res) => {
 const fetchUserAllOrders = async (req, res) => {
   try {
     const userId = req.params.userId;
-
+    if (userId !== req.user.userId) {
+      return res.status(403).json(ErrorResponse(403, "Unauthorized"));
+    }
     const userDetails = await User.findById(userId);
 
     if (!userDetails) {
@@ -198,6 +200,10 @@ const fetchOrderDetails = async (req, res) => {
 
     if (!orderDetails) {
       return res.status(400).json(ErrorResponse(400, "Order not valid"));
+    }
+
+    if (orderDetails.user.toString() !== req.user.userId) {
+      return res.status(403).json(ErrorResponse(403, "Unauthorized"));
     }
 
     return res

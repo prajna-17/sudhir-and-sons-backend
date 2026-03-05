@@ -24,8 +24,7 @@ router.post("/create-pending", requireAuth, createPendingOrder);
 router.post("/create-cod", requireAuth, createCODOrder);
 router.patch("/cancel/:orderId", requireAuth, cancelOrder);
 
-router.get("/order-details/:orderId", fetchOrderDetails);
-
+router.get("/order-details/:orderId", requireAuth, fetchOrderDetails);
 // ================= ADMIN ROUTES =================
 router.get("/notifications", fetchAllNotifications);
 router.patch("/mark-notified/:orderId", markOrderAsNotified);
@@ -35,6 +34,5 @@ router.get("/", fetchAllOrders);
 router.patch("/:orderId", orderCompleted);
 
 // ================= KEEP DYNAMIC ROUTE LAST =================
-router.get("/:userId", fetchUserAllOrders);
-
+router.get("/:userId", requireAuth, fetchUserAllOrders);
 module.exports = router;
