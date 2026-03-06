@@ -157,8 +157,12 @@ const verifyOtp = async (req, res) => {
       status: "success",
       message: "OTP verified successfully",
       token,
-      role: user.role,
-      name: user.name, // ✅ SEND NAME BACK
+      user: {
+        _id: user._id,
+        name: user.name,
+        email: user.email,
+        role: user.role,
+      },
       isProfileComplete: !!user.name,
     });
   } catch (error) {
